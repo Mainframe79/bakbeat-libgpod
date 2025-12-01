@@ -1,8 +1,14 @@
-# libgpod
+# libgpod (BakBeat Meta-Fork)
 
 libgpod is a library meant to abstract access to an iPod content. It
 provides an easy to use API to retrieve the list of files and playlist
 stored on an iPod, to modify them and to save them back to the iPod.
+
+## BakBeat Integration
+
+This is the BakBeat meta-fork of libgpod, used as a C library dependency for the BakBeat macOS app. For detailed macOS build instructions, see:
+
+**[Docs/BUILDING-macOS-libgpod.md](Docs/BUILDING-macOS-libgpod.md)**
 
 ## Changes to the original project
 
