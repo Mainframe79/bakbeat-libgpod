@@ -19,7 +19,7 @@ gnome = import('gnome')
 glib = dependency('glib-2.0')
 gobject = dependency('gobject-2.0')
 sqlite = dependency('sqlite3')
-plist = dependency('libplist')
+plist = dependency('libplist-2.0')
 gmodule = dependency('gmodule-2.0')
 zlib = dependency('zlib')
 udev = dependency('libudev', required: get_option('udev'))
@@ -40,12 +40,6 @@ cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required : false)
 
 conf_data = configuration_data()
-if gdk_pixbuf.found()
-  conf_data.set('HAVE_GDKPIXBUF', 1)
-else
-  conf_data.set('HAVE_GDKPIXBUF', false)
-endif
-
 if gdk_pixbuf.found()
   conf_data.set('HAVE_GDKPIXBUF', 1)
 else
@@ -81,9 +75,14 @@ conf_data.set10('HAVE_UNISTD_H', true)
 conf_data.set10('HAVE_HAL', false) # HAL is not supported anymore
 conf_data.set10('_GNU_SOURCE', true)
 conf_data.set_quoted('TMPMOUNTDIR', '/tmp/ipod')
-config_h = configure_file(output: 'config.h',
-                          configuration: conf_data)
+
+config_h = configure_file(
+  output: 'config.h',
+  configuration: conf_data,
+)
+
 configuration_inc = include_directories('.')
+
 add_global_arguments('-DLIBGPOD_BLOB_DIR="/usr/lib64/libgpod"', language : 'c')
 
 subdir('po')
@@ -91,6 +90,7 @@ subdir('src')
 subdir('docs')
 subdir('tools')
 subdir('bindings')
+
 if get_option('test')
   subdir('tests')
 endif

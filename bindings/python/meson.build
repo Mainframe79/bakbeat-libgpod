@@ -1,3 +1,7 @@
+if get_option('python').disabled()
+  subdir_done()
+endif
+
 swig = find_program('swig', required: get_option('python'))
 pygobject = dependency('pygobject-3.0', required: get_option('python'))
 
