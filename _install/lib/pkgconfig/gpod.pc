@@ -1,0 +1,11 @@
+prefix=/Volumes/Data/Github/bakbeat-libgpod/_install
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: gpod
+Description: Library to access iPod content.
+Version: 1.0
+Requires.private: glib-2.0, libxml-2.0, gobject-2.0, sqlite3, libplist-2.0, gmodule-2.0, zlib
+Libs: -L${libdir} -lgpod
+Libs.private: -lm
+Cflags: -I${includedir}/gpod-1.0/gpod
